@@ -1,0 +1,111 @@
+.container {
+    max-width: 120rem;
+    margin: 8rem auto; //top-bottom=80px left-right=auto
+    background-color: var(--color-grey-light-1);
+    box-shadow: var(--shadow-dark);
+
+    min-height: 50rem;
+
+   // Written with  media query desktop-first stratergy!!!// $bp-largest=1200px
+   @media only screen and (max-width: $bp-largest) {
+       margin: 0;
+       max-width: 100%; // max-width and width should also stay 100%(1200px)
+       width: 100%;
+   }
+
+} 
+
+.header {
+    font-size: 1.4rem;
+    height: 7rem;
+    background-color: #fff;
+    border-bottom: var(--line);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center; // to set all items in header aligning center. But user-nav must be reset(override) individually to stretch with align-self: stretch!
+
+    @media only screen and (max-width: $bp-smallest) { // $bp-smallest=500px
+        flex-wrap: wrap; // the flex will wrap at 500px bp to pusf the serch bar to start a new line allowing the items in front more space and the the  serch box its self at the line underneath!
+        align-content: space-around;
+        height: 11rem; // The header 's heignt must be increased to position the 2 lines in it!
+    }
+}
+
+.content {
+    display: flex; //content is the flex container to flex-item = sidebar&hotel-view
+    @media only screen and (max-width: $bp-medium) { // $bp-medium=900px
+        flex-direction: column; 
+    }
+}
+
+.sidebar {
+    background-color: var(--color-grey-dark-1);
+
+    flex: 0 0 18%; // 0=f-grow, 0=f-shrink, 18%=18% of container's width
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+////////////////////////
+//HOTEL VIEW
+
+.hotel-view {
+    background-color: #fff;
+
+    flex: 1; // is the number of flex grow to allow flex item to grow for the rest of the width. In this case, 100-18 = 82% of the container's width
+}
+
+////////////////////////
+//THE DETAIL inside hotel view
+.detail {
+    font-size: 1.4rem; //setting font-size: 1.4rem at details, as it is the parent of descrition&user-review, will also set up all the font-size to 1.4rem too! 
+    display: flex;
+    padding: 4.5rem;
+    background-color: var(--color-grey-light-1);
+    border-bottom: var(--line);
+
+    // decreasing the padding in  details box
+    @media only screen and (max-width: $bp-medium) { // $bp-largest=900px
+        padding: 3rem;
+    }
+
+    @media only screen and (max-width: $bp-small) { // $bp-small=600px
+        flex-direction: column;
+    }
+
+}
+
+.description {
+    //font-size: 1.4rem; is inherit from detail(the parent)
+    background-color: #fff;
+    box-shadow: var(--shadow-light);
+    padding: 3rem;
+    flex: 0 0 60%; // flex basis takes 60% of the width
+    margin-right: 4.5rem;
+
+    @media only screen and (max-width: $bp-medium) { // $bp-medium=900px
+        padding: 2rem;
+        margin-right: 3rem;
+    }
+
+    // when there is conflict in desktop-first design: The machine will set the secound declaration as a default!!! In this case, the margin-right is declared in both medium & small size screen. YOU MUST DECLARE A BIGGER SIZE FIRST. 
+
+    @media only screen and (max-width: $bp-small) { // $bp-small=600px
+        margin-right: 0;
+        margin-bottom: 3rem;
+    }
+}
+
+.user-reviews {
+      //font-size: 1.4rem; is inherit from detail(the parent)
+    flex: 1; // flex grow 1 takes the rest of the width
+
+    // there are 2 inline-button. This one with a span:arrow in it is on the bottom of the review box and it needs a little bit of a styling. It must also be positioned at the bottom center of the box by setting up the whole layout of user-review into a flex-flex-direction: column!
+    display: flex;
+    flex-direction: column;
+    // after setting it to column the line under the button will stretch (as the items above it) The solution is to set align-item to center from here (the parent element!)
+    align-items: center;
+}

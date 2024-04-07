@@ -1,0 +1,63 @@
+/* basic setting and defying css custom property to use as variable in css -- starting by setting :root psuedo class to set up for all re-use purpose of variables which has higher specificity than decoration box *{} and other elements as they are limited to the elements and their children. Once css variables(css custom property) are set up in root psuedo selector can be accessed in many cork functions(mulnipulated in js scripts or added in dev tools)and can also be used through entire document*/
+
+:root {
+    --color-primary: #eb2f64;
+    --color-primary-light: #ff3366;
+    --color-primary-dark: #ba265d;
+
+    --color-grey-light-1:#faf9f9;
+    --color-grey-light-2:#f4f2f2;
+    --color-grey-light-3:#f0eeee;
+    --color-grey-light-4:#ccc;
+ 
+    --color-grey-dark-1: #333;
+    --color-grey-dark-2: #777;
+    --color-grey-dark-3: #999;
+
+    --shadow-dark: 0 2rem 6rem rgba(0,0,0,.3);
+    --shadow-light: 0 2rem 5rem rgba(0,0,0,.06);
+
+    /*example: you can also build a variable with variable in it*/
+    --line: 1px solid var(--color-grey-light-2);
+}
+// NOTE! setting sass variable in scss.as for media query does not allow to write variable in css. Also Note! in Media query font-size stays at 16px(100%) = 1rem. No matter what you set up the root html in the project! In this example, 1200px = 1200/16 = 75rem = 75em (1em=1rem in value of base font-size)
+$bp-largest: 75em;  // 1200px
+$bp-large: 68.75em; // 1100px
+$bp-medium: 56.25em;  // 900px
+$bp-small: 37.5em;  // 600px
+$bp-smallest: 31.25em;  // 500px
+//setting>>
+* {
+    margin: 0; //decoration box
+    padding: 0;
+
+}
+
+*, // universal selector
+*::before, // before & after psuedo element should inherit box-sizing property set to border-box: box-sizing in html.
+*::after {
+    box-sizing: inherit;
+}
+
+html {
+    box-sizing: border-box; // >>Global set up!
+    font-size: 62.5%; // The standard root font-size 16px (100%)= 1.6rem. It makes it easier or simpler to work with rem when you set root html font-size at 62.5% It is = 10px. By calc 100%(16px)=16px So 10px = 10/16 x 100(%)= 62.5% Now you can use 1rem=10px in the project!
+    
+    //font-size in root html will change to 50% (8px=1rem) at breakpiont 1100px
+    @media only screen and (max-width: $bp-large) {
+        font-size: 50%;
+    }
+}
+
+//font-family is set with google fonts(link is set in html<head>) If it does not load sans-serif is set for the back up!
+body {   
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    line-height: 1.6; //is the line over all in the document
+    color: var(--color-grey-dark-2); //var=variable in scss
+    background-image: linear-gradient(to right bottom, var(--color-primary-light), var(--color-primary-dark));
+    background-size: cover;//setting background-size: cover will set the background to repeat all the way down as (its default) the line-height is set to 1.6rem(16px) in this situation! It looks acculy cool. But to sovle this situation is to reverse it by setting bg-repeat to no-reoeat!
+    background-repeat: no-repeat;// it will be set back to the size of body element (16px)
+
+    min-height: 100vh;// set up for body as bg-color-area during the set uo of block elements inside the body
+}
