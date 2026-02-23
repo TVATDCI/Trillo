@@ -4,21 +4,23 @@
   "description": "trillonew app",
   "main": "index.js",
   "scripts": {
-    "compile:sass": "node-sass sass/main.scss css/style.comp.css --watch",
-    "prefix:css": "postcss --use autoprefixer -b 'last 10 versions' css/style.comp.css -o css/style.prefix.css",
-    "compress:css": "node-sass css/style.prefix.css css/style.css --output-style-compressed",
-    "build:css": "npm-run-all compile:sass prefix:css compress:css"
+    "compile:sass": "sass sass/main.scss css/style.css --style=expanded",
+    "prefix:css": "postcss css/style.css --use autoprefixer -o css/style.css",
+    "watch:sass": "sass sass/main.scss css/style.css --watch --style=expanded",
+    "build:css": "npm-run-all compile:sass prefix:css",
+    "deploy": "gh-pages -d .",
+    "format": "prettier --write ."
   },
   "author": "TNTHNGVDYNND",
   "license": "ISC",
-  "dependencies": {
-    "node-sass": "^9.0.0",
-    "save-dev": "^0.0.1-security"
-  },
   "devDependencies": {
-    "autoprefixer": "^10.4.19",
+    "autoprefixer": "^10.4.24",
     "concat": "^1.0.3",
-    "npm-run-all": "^4.1.5",
-    "postcss-cli": "^11.0.0"
+    "gh-pages": "^6.3.0",
+    "npm-run-all": "^1.1.3",
+    "postcss": "^8.5.6",
+    "postcss-cli": "^11.0.1",
+    "prettier": "^3.8.1",
+    "sass": "^1.97.3"
   }
 }
