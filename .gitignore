@@ -1,0 +1,6 @@
+# Dependencies
+/node_modules
+
+# Build artifacts
+/css/style.css
+/css/style.css.map
