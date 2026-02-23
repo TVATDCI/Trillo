@@ -30,14 +30,14 @@ New set of `npm` scripts in `package.json` to automate everything.
 
 - **`npm run watch:sass`**: Use this for local development. It watches over `.scss` files and compiles them into the `css/style.css` file whenever a change is made, which works perfectly with Live Server.
 
-## 3. How to Deploy Your Project (The New Way)
+## 3. How to Deploy the Project (The New Way)
 
 Here is the new step-by-step workflow.
 
 ### Step 1: Develop Locally
 
-- Run `npm run watch:sass` in your terminal.
-- Use "Live Server" in VS Code to see your changes in real-time as you edit your HTML and SCSS files.
+- Run `npm run watch:sass` in the terminal.
+- Use "Live Server" in VS Code to see the changes in real-time as being edited in HTML and SCSS files.
 
 ### Step 2: Deploy to GitHub Pages
 
