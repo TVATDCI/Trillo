@@ -1,3 +1,5 @@
+@use "base.scss" as *;
+
 .container {
     max-width: 120rem;
     margin: 8rem auto; //top-bottom=80px left-right=auto
